@@ -1,7 +1,7 @@
 import https from 'https';
 import { TokenTracker } from "../utils/token-tracker";
 import { ReadResponse } from '../types';
-import { JINA_API_KEY } from "../config";
+import { JINA_API_KEY, JINA_BASE_URL } from "../config";
 
 export function readUrl(url: string, tracker?: TokenTracker): Promise<{ response: ReadResponse }> {
   return new Promise((resolve, reject) => {
@@ -13,8 +13,7 @@ export function readUrl(url: string, tracker?: TokenTracker): Promise<{ response
     const data = JSON.stringify({ url });
 
     const options = {
-      hostname: 'r.jina.ai',
-      port: 443,
+      hostname: JINA_BASE_URL,
       path: '/',
       method: 'POST',
       headers: {

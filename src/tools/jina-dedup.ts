@@ -1,30 +1,23 @@
 import axios, {AxiosError} from 'axios';
 import {TokenTracker} from "../utils/token-tracker";
-import {JINA_API_KEY} from "../config";
+import {JINA_API_KEY, JINA_BASE_URL, EMBEDDING_MODEL_NAME} from "../config";
 
-const JINA_API_URL = 'https://api.jina.ai/v1/embeddings';
+const JINA_API_URL = JINA_BASE_URL;
 const SIMILARITY_THRESHOLD = 0.93; // Adjustable threshold for cosine similarity
 
 const JINA_API_CONFIG = {
-  MODEL: 'jina-embeddings-v3',
-  TASK: 'text-matching',
-  DIMENSIONS: 1024,
-  EMBEDDING_TYPE: 'float',
-  LATE_CHUNKING: false
+  MODEL: EMBEDDING_MODEL_NAME,
 } as const;
 
 // Types for Jina API
 interface JinaEmbeddingRequest {
   model: string;
-  task: string;
-  late_chunking: boolean;
-  dimensions: number;
-  embedding_type: string;
   input: string[];
 }
 
 interface JinaEmbeddingResponse {
   model: string;
+  id: string;
   object: string;
   usage: {
     total_tokens: number;
@@ -54,10 +47,6 @@ async function getEmbeddings(queries: string[]): Promise<{ embeddings: number[][
 
   const request: JinaEmbeddingRequest = {
     model: JINA_API_CONFIG.MODEL,
-    task: JINA_API_CONFIG.TASK,
-    late_chunking: JINA_API_CONFIG.LATE_CHUNKING,
-    dimensions: JINA_API_CONFIG.DIMENSIONS,
-    embedding_type: JINA_API_CONFIG.EMBEDDING_TYPE,
     input: queries
   };
 
@@ -68,7 +57,6 @@ async function getEmbeddings(queries: string[]): Promise<{ embeddings: number[][
       {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${JINA_API_KEY}`
         }
       }
     );

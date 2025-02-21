@@ -1,7 +1,7 @@
 import https from 'https';
 import { TokenTracker } from "../utils/token-tracker";
 import { SearchResponse } from '../types';
-import { JINA_API_KEY } from "../config";
+import { JINA_API_KEY, JINA_BASE_URL } from "../config";
 
 export function search(query: string, tracker?: TokenTracker): Promise<{ response: SearchResponse}> {
   return new Promise((resolve, reject) => {
@@ -11,8 +11,7 @@ export function search(query: string, tracker?: TokenTracker): Promise<{ respons
     }
 
     const options = {
-      hostname: 's.jina.ai',
-      port: 443,
+      hostname: JINA_BASE_URL,
       path: `/${encodeURIComponent(query)}?count=0`,
       method: 'GET',
       headers: {

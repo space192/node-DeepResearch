@@ -5,6 +5,8 @@
     "GEMINI_API_KEY": "",
     "OPENAI_API_KEY": "",
     "JINA_API_KEY": "",
+    "EMBEDDING_MODEL_NAME": "",
+    "JINA_BASE_URL": "",
     "BRAVE_API_KEY": "",
     "SERPER_API_KEY": "",
     "DEFAULT_MODEL_NAME": ""
