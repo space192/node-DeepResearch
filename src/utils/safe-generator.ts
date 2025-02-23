@@ -44,11 +44,12 @@ export class ObjectGeneratorSafe {
         temperature: getToolConfig(model).temperature,
       });
 
+      console.log(result);
+
       this.tokenTracker.trackUsage(model, result.usage);
       return result;
 
     } catch (error) {
-      console.error(error);
       // First fallback: Try manual JSON parsing of the error response
       try {
         const errorResult = await this.handleGenerateObjectError<T>(error);
