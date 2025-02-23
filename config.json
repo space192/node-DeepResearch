@@ -48,7 +48,7 @@
     },
     "openai": {
       "default": {
-        "model": "gpt-4o-mini",
+        "model": "mistral-large-latest",
         "temperature": 0,
         "maxTokens": 8000
       },
