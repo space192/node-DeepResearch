@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { mistral } from '@ai-sdk/mistral';
 import {generateObject, LanguageModelUsage, NoObjectGeneratedError} from "ai";
 import {TokenTracker} from "./token-tracker";
 import {getModel, ToolName, getToolConfig} from "../config";
