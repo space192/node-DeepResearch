@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { ProxyAgent, setGlobalDispatcher } from 'undici';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { createOpenAI, OpenAIProviderSettings } from '@ai-sdk/openai';
-import { createMistralAI } from '@ai-sdk/mistralai';
+import { createMistralAI } from '@ai-sdk/mistral';
 import configJson from '../config.json';
 // Load environment variables
 dotenv.config();
