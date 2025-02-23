@@ -48,6 +48,7 @@ export class ObjectGeneratorSafe {
       return result;
 
     } catch (error) {
+      console.error(error);
       // First fallback: Try manual JSON parsing of the error response
       try {
         const errorResult = await this.handleGenerateObjectError<T>(error);
