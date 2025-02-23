@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { ProxyAgent, setGlobalDispatcher } from 'undici';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { createOpenAI, OpenAIProviderSettings } from '@ai-sdk/openai';
-import { createMistralAI } from '@ai-sdk/mistral';
+import { createMistral } from '@ai-sdk/mistral';
 import configJson from '../config.json';
 // Load environment variables
 dotenv.config();
@@ -110,7 +110,7 @@ export function getModel(toolName: ToolName) {
       opt.baseURL = OPENAI_BASE_URL;
     }
 
-    return createMistralAI(opt)(config.model);
+    return createMistral(opt)(config.model);
   }
 
   if (LLM_PROVIDER === 'vertex') {
