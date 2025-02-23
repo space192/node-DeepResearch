@@ -2,7 +2,7 @@ import axios, {AxiosError} from 'axios';
 import {TokenTracker} from "../utils/token-tracker";
 import {JINA_API_KEY, JINA_BASE_URL, EMBEDDING_MODEL_NAME} from "../config";
 
-const JINA_API_URL = JINA_BASE_URL;
+const JINA_API_URL = "https://api.mistral.ai/v1/embeddings";
 const SIMILARITY_THRESHOLD = 0.93; // Adjustable threshold for cosine similarity
 
 const JINA_API_CONFIG = {
@@ -57,6 +57,7 @@ async function getEmbeddings(queries: string[]): Promise<{ embeddings: number[][
       {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${JINA_API_KEY}`
         }
       }
     );
